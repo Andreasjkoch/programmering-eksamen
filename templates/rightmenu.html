@@ -1,0 +1,11 @@
+<div class="right">
+    <h1>Venner</h1>
+    {% for friend in friends %}
+        <div class="friend">
+            <a href="/profile?id={{friend.id}}">
+                <img class="profile-image friendslist_margin" {% if friend.picture %} src="{{friend.picture}}" {% else %} src="../static/img/placeholder.jpg" {% endif %} alt="{{ friend.name }} {{ friend.lastname }}" />
+            </a>
+            <a href="/profile?id={{friend.id}}">{{ friend.name }} {{ friend.lastname }}</a>
+        </div>
+    {% endfor %}
+</div>

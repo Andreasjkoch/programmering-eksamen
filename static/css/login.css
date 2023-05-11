@@ -1,0 +1,107 @@
+.content {
+    display: flex;
+    justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.h1 {
+	font-weight: bold;
+	margin: 0;
+	font-size: 2rem;
+}
+
+span {
+	font-size: 12px;
+}
+
+.a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+.button {
+	border-radius: 20px;
+	border: 1px solid #003399;
+	background-color: #003399;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+.button:hover {
+	cursor: pointer;
+	background-color: #001d57;
+	border: 1px solid #001d57;
+	transition: 200ms;
+}
+.button:active {
+	transform: scale(0.95);
+}
+
+.button:focus {
+	outline: none;
+}
+
+.button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+.loginForm {
+	background-color: #0f0f0f;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+.input {
+	background-color: #eee !important;
+	border: none !important;
+	padding: 12px 15px !important;
+	margin: 8px 0 !important;
+	width: 50% !important;
+	border-radius: 10px !important;
+}
+
+.container {
+	background-color: #0f0f0f;
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+    display: flex;
+}
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+	width: 100%;
+	z-index: 2;
+}
+
+
+h4 a {
+	color: #003399;
+}

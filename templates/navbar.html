@@ -1,0 +1,21 @@
+<header>
+	<script src="https://kit.fontawesome.com/539cfe4b7e.js" crossorigin="anonymous"></script>
+
+	<div class="left-header">
+		<img class="logo" src="../static/img/logo.png" alt="FriendZone" onclick="window.location.href = '/'">
+	</div>
+
+	<div class="right-header">
+		{% if user %}
+		  <div class="menu-container">
+			<div class="menu-content">
+			  <a href="/profile"> <i class="fa-solid fa-user"></i> Profile</a>
+			  <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+			</div>
+		  
+		  <p>{{user.name}} {{user.lastname}} <img src="{{user.picture}}" onerror="this.src='../static/img/placeholder.jpg';" class="profile-image"></p>
+		</div>
+		{% endif %}
+	  </div>
+	  
+</header>

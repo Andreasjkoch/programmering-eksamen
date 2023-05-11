@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../static/css/global.css"  rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
+	<link href="../static/css/navbar.css" rel="stylesheet">
+    <title>FriendZone</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="container">
+        {% include "leftmenu.html" %}
+        <div class="middle">
+            <div class="posts">
+                {% include "createpost.html" %}
+                {% for post in posts %}
+                    {% include "post.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        {% include "rightmenu.html" %}
+    </div>
+</body>
+</html>

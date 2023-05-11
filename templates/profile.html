@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../static/css/global.css"  rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
+	<link href="../static/css/navbar.css" rel="stylesheet">
+    <link href="../static/css/profile.css" rel="stylesheet">
+    <title>FriendZone</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="container">
+        {% include "leftmenu.html" %}
+        <div class="profile">
+            {% if user == requestedUser %} <form action="/profile/updateBanner" method="post" enctype="multipart/form-data"> {% endif %}
+                <div class="banner {% if user == requestedUser %} bannerEditable{% endif %}" {% if user == requestedUser %} onclick="bannerInput.click();" {% endif %}>
+                    {% if requestedUser.banner %}
+                        <img class="bannerImage" src="{{requestedUser.banner}}">
+                    {% else %}
+                        <!-- Replace banner with static color -->
+                        <div class="bannerColor"></div>
+                    {% endif %}
+                    {% if user == requestedUser %}
+                    <div class="bannerEdit">
+                        <i class="fa-sharp fa-solid fa-pencil editButton"></i>
+                    </div>
+                    <input style="display:none;" type="file" name="image" id="bannerInput" onchange="this.form.submit()" accept=".png, .jpeg, .jpg">
+                    {% endif %}
+                </div>
+            {% if user == requestedUser %}
+            </form>
+            <form action="/profile/updatePicture" method="post" enctype="multipart/form-data">
+            {% endif %}
+                <div class="profileInformation">
+                    <img {% if user == requestedUser %} onclick="pictureInput.click();" {% endif %} class="profileImage {% if user == requestedUser %} profileImageEditable {% endif %}" {% if requestedUser.picture %} src="{{requestedUser.picture}}" {% else %} src="../static/img/placeholder.jpg" {% endif %}>
+                    {% if user == requestedUser %}
+                    <div class="pictureEdit">
+                        <i class="fa-sharp fa-solid fa-pencil editButton"></i>
+                    </div>
+                    <input style="display:none;" type="file" name="image" id="pictureInput" onchange="this.form.submit()" accept=".png, .jpeg, .jpg">
+                    {% endif %}
+                    <h1 class="profileName">{{requestedUser.name}} {{requestedUser.lastname}}</h1>
+                    <h3 class="profileFriendcount">{{ friendCount }} ven{% if friendCount !=1 %}ner{% endif %}</h2>
+                </div>
+            {% if user == requestedUser %}
+            </form>
+            {% endif %}
+            <div class="profileControls">
+                {% if friendshipStatus == "none" %}
+                <form action="/friends/request" method="post">
+                    <input type="hidden" name="friendId" value="{{requestedUser.id}}">
+                    <button class="post-button">Tilføj ven</button>
+                </form>
+                {% elif friendshipStatus == "requested" %}
+                <form action="/friends/cancel" method="post">
+                    <input type="hidden" name="friendId" value="{{requestedUser.id}}">
+                    <button class="post-button gray">Annullér venneanmodning</button>
+                </form>
+                {% elif friendshipStatus == "received" %}
+                <form action="/friends/accept" method="post">
+                    <input type="hidden" name="friendId" value="{{requestedUser.id}}">
+                    <button class="post-button">Accepter venneanmodning</button>
+                </form>
+                <form action="/friends/decline" method="post">
+                    <input type="hidden" name="friendId" value="{{requestedUser.id}}">
+                    <button class="post-button">Afvis venneanmodning</button>
+                </form>
+                {% elif friendshipStatus == "friends" %}
+                <form action="/friends/remove" method="post">
+                    <input type="hidden" name="friendId" value="{{requestedUser.id}}">
+                    <button class="post-button">Fjern ven</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        <div class="middle">
+            <div class="posts">
+                {% if requestedUser == user %}
+                  {% include "createpost.html" %}
+                {% endif %}
+                {% for post in posts %}
+                    {% include "post.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        {% include "rightmenu.html" %}
+    </div>
+</body>
+</html>

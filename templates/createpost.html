@@ -1,0 +1,23 @@
+<form method="post" action="/post/create">
+    <div class="post">
+        <div class="post-inner">
+            <div class="post-header">
+                <div class="post-header-author">
+                    <h1><img src="{{user.picture}}" onerror="this.src='../static/img/placeholder.jpg';" class="profile-image">  Hvad har du på hjerte?</h1>
+                </div>
+                <div class="post-header-title">
+                    <input type="text" placeholder="Titel" name="title" class="createPost createTitle">
+                </div>
+            </div>
+            <div class="post-content">
+                <textarea type="text" placeholder="Indhold" name="content" class="createPost createContent"></textarea>
+            </div>
+            <div class="post-buttons">
+                <button type="submit" class="post-button">Slå op</button>
+                {% if request.args.get('error') %}
+                    <span style="color:red">{{ request.args.get('error') }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</form>

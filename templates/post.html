@@ -1,0 +1,50 @@
+<div class="post">
+    <div class="post-inner">
+        <div class="post-header">
+            <a class="post-header-author" href="/profile?id={{post.author}}">
+                <h1><img {% if post.picture %} src="{{post.picture}}" {% else %} src="../static/img/placeholder.jpg" {% endif %} class="profile-image">  {{post.name}} {{post.lastname}}</h1>
+            </a>
+            <div class="post-header-timestamp">
+                <h1 class="timestampMessage" title="{{post.formatted_time}}">{{post.time_ago}} </h1>
+            </div>
+            <div class="post-header-title">
+                <h1>{{post.title}}</h1>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>{{post.content}}</p>
+        </div>
+    </div>
+    <div class="post-comments">  
+        <form action="/post/comment" method="post">
+            <div class="post-comment">
+                <a class="post-comment-header-author" href="/profile?id=1">
+                    <img {% if user.picture %} src="{{user.picture}}" {% else %} src="../static/img/placeholder.jpg" {% endif %} class="profile-image">
+                </a>
+                <div class="post-comment-inner">
+                    <input type="text" placeholder="Skriv en kommentar" name="comment" class="commentInput">
+                </div>
+                <input type="hidden" name="post_id" value="{{post.id}}">
+                <button type="submit" class="post-comment-inner post-comment-send">
+                    <i class="fa-solid fa-paper-plane" style="transform: rotate(45deg); margin-left: -0.9vh;"></i>
+                </button>
+            </div>
+        </form>
+        {% for comment in post.comments %}
+        <div class="post-comment">
+            <a class="post-comment-header-author" href="/profile?id={{comment.id}}">
+                <img {% if comment.picture %} src="{{comment.picture}}" {% else %} src="../static/img/placeholder.jpg" {% endif %} class="profile-image">
+            </a>
+            <div class="post-comment-inner">
+                <div class="post-comment-content">
+                    <a href="/profile?id={{comment.id}}" class="commentAuthor">{{comment.name}} {{comment.lastname}}</a>
+                    <p class="commentContent">{{comment.comment}}</p>
+                </div>
+            </div>
+            <div class="post-comment-timestamp" title="{{comment.formatted_time}}">
+                {{comment.time_ago}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>  
