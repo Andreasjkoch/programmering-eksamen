@@ -313,11 +313,3 @@ def commentPost():
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
-
-## E/R diagram af databasen
-## Normalisering af data
-## Class diagram
-## Læs teori om normalisering af data
-
-## Diagram over hele vores site hvordan vi bygger det objektorienteret
-## Tænk over hvordan man kunne lave venneforslag, algoritmer osv.
